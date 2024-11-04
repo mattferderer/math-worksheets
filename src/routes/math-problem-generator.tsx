@@ -1,5 +1,6 @@
 // src/routes/index.tsx
 import { createSignal, For } from "solid-js";
+import ErrorMessage from "../components/Error";
 
 type ProblemType = "addition" | "subtraction" | "multiplication" | "division";
 
@@ -135,6 +136,10 @@ export default function Addition() {
               required
             />
           </div>
+          <ErrorMessage
+            show={minNumber() > maxNumber()}
+            message="Minimum number cannot be greater than maximum number."
+          />
           {/* Maximum Number */}
           <div>
             <label
@@ -170,6 +175,11 @@ export default function Addition() {
               min="1"
             />
           </div>
+          {/* Error Message */}
+          <ErrorMessage
+            message="Number of problems must be at least 1."
+            show={numProblems() < 1}
+          />
           <div class="flex items-center space-x-2">
             <input
               type="checkbox"
@@ -186,6 +196,7 @@ export default function Addition() {
           <div>
             <button
               type="submit"
+              disabled={minNumber() > maxNumber() || numProblems() < 1}
               class="w-full bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700 transition-colors"
             >
               Generate Problems
@@ -195,14 +206,14 @@ export default function Addition() {
 
         {/* Display Problems */}
         {problems().length > 0 && (
-          <div class="mt-8 print:mt-0">
+          <section class="mt-8 print:mt-0">
             <h2 class="text-xl font-semibold mb-4 text-center print:hidden">
               Generated Math Problems {showAnswers() && "(Answer Key)"}
             </h2>
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 print:grid-cols-4 gap-6 print:gap-8">
+            <ul class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 print:grid-cols-4 gap-6 print:gap-8">
               <For each={problems()}>
                 {(problem, index) => (
-                  <div class="flex items-center justify-center my-8 print:break-inside-avoid">
+                  <li class="flex items-center justify-center my-8 print:break-inside-avoid">
                     <div class="text-2xl font-mono print:text-xl">
                       <div
                         class="flex flex-col items-end"
@@ -226,11 +237,11 @@ export default function Addition() {
                         )}
                       </div>
                     </div>
-                  </div>
+                  </li>
                 )}
               </For>
-            </div>
-          </div>
+            </ul>
+          </section>
         )}
       </div>
     </div>
