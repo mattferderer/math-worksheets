@@ -13,6 +13,12 @@ const links = [
     description:
       "Find and complete the number patterns to improve logical thinking and pattern recognition skills.",
   },
+  {
+    href: "/multiplication-division-basics",
+    text: "Intro Multiplication & Division",
+    description:
+      "Learn multiplication and division by using a number to do skip counting & times tables. Then try long multiplication. Division options available too. Lots of toggles & customization. Great for beginners.",
+  },
 ];
 
 export default function Home() {
@@ -25,7 +31,8 @@ export default function Home() {
         Generate custom math worksheets for students, perfect for quick practice
         at home or in the classroom. This is just a simple tool I created for my
         kids. If you would like changes/updates feel free to request them with
-        the link at the bottom.
+        the link at the bottom. Everything is free, easy to print & share. No
+        ads. Enjoy!
       </p>
       {/* Links */}
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">

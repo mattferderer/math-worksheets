@@ -3,6 +3,7 @@ import { Component, Show } from "solid-js";
 const ErrorMessage: Component<{ message: string; show: boolean }> = (props) => (
   <Show when={props.show}>
     <div
+      data-test-name="error-message"
       class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative"
       role="alert"
     >
