@@ -19,6 +19,12 @@ const links = [
     description:
       "Learn multiplication and division by using a number to do skip counting & times tables. Then try long multiplication. Division options available too. Lots of toggles & customization. Great for beginners.",
   },
+  {
+    href: "/bingo",
+    text: "Bingo Card Generator",
+    description:
+      "Generate bingo cards with your own terms. Great for classroom activities, parties, and more.",
+  },
 ];
 
 export default function Home() {
