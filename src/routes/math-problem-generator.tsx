@@ -35,13 +35,14 @@ export default function Addition() {
     const generated: MathProblem[] = [];
 
     for (let i = 0; i < numProblems(); i++) {
-      const num1 = getRandomInt(minNumber(), maxNumber());
-      let num2 = getRandomInt(minNumber(), maxNumber());
+      // Num1 is always greater than Num2 & should never be minNumber.
+      const num1 = getRandomInt(minNumber() + 1, maxNumber());
+      let num2 = getRandomInt(minNumber(), num1);
 
-      // For division, ensure no division by zero and integer results
-      if (problemType() === "division") {
+      // For division, ensure no division by zero and integer results and 2nd number is smaller.
+      if (problemType() === "division" || problemType() === "subtraction") {
         while (num2 === 0) {
-          num2 = getRandomInt(minNumber(), maxNumber());
+          num2 = getRandomInt(minNumber(), num1);
         }
       }
 

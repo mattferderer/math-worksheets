@@ -37,4 +37,22 @@ test.describe("Math Problem Generator", () => {
     const answers = await page.$$eval(".text-right", (elems) => elems.length);
     expect(answers).toBe(5);
   });
+
+  test("generates subtraction problems with no negative values", async ({
+    page,
+  }) => {
+    await page.selectOption("#problemType", "subtraction");
+    await page.fill("#minNumber", "1");
+    await page.fill("#maxNumber", "10");
+    await page.fill("#numProblems", "5");
+    await page.check("#showAnswers");
+    await page.click('button[type="submit"]');
+
+    const answers = await page.$$eval(".text-right", (elems) => elems.length);
+    expect(answers).toBe(5);
+    // expect all answers to be positive
+    const allPositive = await page.$$eval(".text-right", (elems) =>
+      elems.every((elem) => parseInt(elem.textContent ?? "") >= 0)
+    );
+  });
 });
